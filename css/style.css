@@ -36,6 +36,28 @@ body{
   width: 68.75em;
 }
 
+.btn-container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+button{
+  background-color: #3B3B3B;
+  color: #f9fafb; 
+  width: 8em;
+  padding: 0.5em 1.2em;
+  margin: 0.2em 0.3em;
+  border-radius: 2em;
+  font-size: 1em;
+  border: 0.16em solid #3B3B3B;
+  transition: 0.2s;
+}
+
+button:hover{
+  border-color: #f5f3f4;
+}
+
 .grid-container{
   display: grid;
   width: 31.25em;
