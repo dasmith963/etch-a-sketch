@@ -1,4 +1,17 @@
-// Create a 16x16 grid of square divs.
+const gridContainer = document.querySelector('.grid-container');
+
+function createGrid(size = 16){
+  gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+  for (let i = 0; i < (size * size); i++){
+    const gridItem = document.createElement('div');
+    gridItem.classList.add('grid-item');
+    gridContainer.appendChild(gridItem);
+  }
+}
+
+createGrid();
 
 // Set up a hover effect so that the grid divs change color when the mouse passes over them
   // default color = black
