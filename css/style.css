@@ -13,3 +13,10 @@ body{
   background-color: #f5f3f4;
   font-family: 'Noto Sans JP', sans-serif;
 }
+
+.grid-container{
+  display: grid;
+  width: 31.25em;
+  height: 31.25em;
+  background-color: #fefefe;
+}
