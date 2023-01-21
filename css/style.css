@@ -30,6 +30,12 @@ body{
   -webkit-background-clip: text;
 }
 
+.main{
+  display: flex;
+  justify-content: space-around;
+  width: 68.75em;
+}
+
 .grid-container{
   display: grid;
   width: 31.25em;
