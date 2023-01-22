@@ -1,9 +1,12 @@
 const gridContainer = document.querySelector('.grid-container');
+const rainbowBtn = document.querySelector('.rainbow-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const sizeText = document.querySelector('.size-text');
 const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
+let currentPen = 'default';
 
+rainbowBtn.addEventListener('click', () => currentPen = 'rainbow')
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
@@ -14,7 +17,14 @@ function createGrid(size = 16){
   for (let i = 0; i < (size * size); i++){
     const gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
-    gridItem.addEventListener('mouseover', getRandomColor);
+    gridItem.addEventListener('mouseover', ()=>{
+      if (currentPen === 'default'){
+        gridItem.style.backgroundColor = color;
+      }
+      else if (currentPen === 'rainbow'){
+        gridItem.style.backgroundColor = getRandomColor();
+      }
+    });
     gridContainer.appendChild(gridItem);
   }
 }
@@ -31,15 +41,7 @@ function getRandomColor () {
   for (let i = 0; i < 6; i++){
     randomColor += letters[Math.floor(Math.random() * 16)];
   }
-
-  this.style.backgroundColor = randomColor;
-}
-
-function updateGridSize(e){
-  size = e.target.value;
-  sizeText.textContent = `${size} x ${size}`;
-  gridContainer.innerHTML = '';
-  createGrid(size);
+  return randomColor;
 }
 
 function clearGrid(){
@@ -47,6 +49,13 @@ function clearGrid(){
   square.forEach((square) => 
     square.style.backgroundColor = 'transparent'
   )
+}
+
+function updateGridSize(e){
+  size = e.target.value;
+  sizeText.textContent = `${size} x ${size}`;
+  gridContainer.innerHTML = '';
+  createGrid(size);
 }
 
 createGrid();
