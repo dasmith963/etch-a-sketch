@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector('.grid-container');
+const colorBtn = document.querySelector('.color-btn');
 const rainbowBtn = document.querySelector('.rainbow-btn');
 const eraserBtn = document.querySelector('.eraser-btn');
 const clearBtn = document.querySelector('.clear-btn');
@@ -7,8 +8,9 @@ const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
 let currentPen = 'default';
 
-eraserBtn.addEventListener('click', () => currentPen = 'eraser');
+colorBtn.addEventListener('click', () => currentPen = 'color')
 rainbowBtn.addEventListener('click', () => currentPen = 'rainbow');
+eraserBtn.addEventListener('click', () => currentPen = 'eraser');
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
@@ -28,6 +30,10 @@ function createGrid(size = 16){
       }
       else if (currentPen === 'eraser'){
         gridItem.style.backgroundColor = '#fefefe';
+      }
+      else if (currentPen === 'color'){
+        const previousColor = color;
+        gridItem.style.backgroundColor = previousColor;
       }
     });
     gridContainer.appendChild(gridItem);
