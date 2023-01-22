@@ -1,12 +1,14 @@
 const gridContainer = document.querySelector('.grid-container');
 const rainbowBtn = document.querySelector('.rainbow-btn');
+const eraserBtn = document.querySelector('.eraser-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const sizeText = document.querySelector('.size-text');
 const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
 let currentPen = 'default';
 
-rainbowBtn.addEventListener('click', () => currentPen = 'rainbow')
+eraserBtn.addEventListener('click', () => currentPen = 'eraser');
+rainbowBtn.addEventListener('click', () => currentPen = 'rainbow');
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
@@ -24,15 +26,17 @@ function createGrid(size = 16){
       else if (currentPen === 'rainbow'){
         gridItem.style.backgroundColor = getRandomColor();
       }
+      else if (currentPen === 'eraser'){
+        gridItem.style.backgroundColor = '#fefefe';
+      }
     });
     gridContainer.appendChild(gridItem);
   }
 }
 
 // Set up a hover effect so that the grid divs change color when the mouse passes over them
-// function changeSquareColor() {
-//     this.style.backgroundColor = color;
-// }
+  // color-picker: color value 
+  // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
 
 function getRandomColor () {
   let letters = '0123456789ABCDEF'.split('');
@@ -59,8 +63,3 @@ function updateGridSize(e){
 }
 
 createGrid();
-
-  // eraser = #fefefe;
-  // color-picker: color value 
-  // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
-  
