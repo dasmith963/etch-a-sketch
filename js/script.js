@@ -1,4 +1,6 @@
 const gridContainer = document.querySelector('.grid-container');
+const clearBtn = document.querySelector('.clear-btn');
+let color = '#3B3B3B';
 
 function createGrid(size = 16){
   gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -11,9 +13,10 @@ function createGrid(size = 16){
     gridContainer.appendChild(gridItem);
   }
 }
+
 // Set up a hover effect so that the grid divs change color when the mouse passes over them
-function defaultColor() {
-    this.style.backgroundColor = '#3B3B3B';
+function changeSquareColor() {
+    this.style.backgroundColor = color;
 }
 
 function getRandomColor () {
@@ -27,9 +30,14 @@ function getRandomColor () {
   this.style.backgroundColor = randomColor;
 }
 
+clearBtn.addEventListener('click', () =>{
+  gridContainer.childNodes.forEach(child  =>
+  child.style.backgroundColor = 'transparent'
+  )
+})
+
 createGrid();
 
-  // default color = #3B3B3B;
   // eraser = #fefefe;
   // color-picker: color value 
   // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
