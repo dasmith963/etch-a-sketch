@@ -2,6 +2,8 @@ const gridContainer = document.querySelector('.grid-container');
 const clearBtn = document.querySelector('.clear-btn');
 let color = '#3B3B3B';
 
+clearBtn.addEventListener('click', clearGrid);
+
 function createGrid(size = 16){
   gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -15,9 +17,9 @@ function createGrid(size = 16){
 }
 
 // Set up a hover effect so that the grid divs change color when the mouse passes over them
-function changeSquareColor() {
-    this.style.backgroundColor = color;
-}
+// function changeSquareColor() {
+//     this.style.backgroundColor = color;
+// }
 
 function getRandomColor () {
   let letters = '0123456789ABCDEF'.split('');
@@ -30,11 +32,12 @@ function getRandomColor () {
   this.style.backgroundColor = randomColor;
 }
 
-clearBtn.addEventListener('click', () =>{
-  gridContainer.childNodes.forEach(child  =>
-  child.style.backgroundColor = 'transparent'
+function clearGrid(){
+  const square = document.querySelectorAll('.grid-item');
+  square.forEach((square) => 
+    square.style.backgroundColor = 'transparent'
   )
-})
+}
 
 createGrid();
 
@@ -42,7 +45,5 @@ createGrid();
   // color-picker: color value 
   // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
   
-  // clear grid()
-
 // Add a function to change number of squares per side for the new grid. 
   //  The existing grid should be removed and a new grid should be generated in the same total space as before 
