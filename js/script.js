@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector('.grid-container');
+const colorPicker = document.querySelector('.color-picker');
 const colorBtn = document.querySelector('.color-btn');
 const rainbowBtn = document.querySelector('.rainbow-btn');
 const eraserBtn = document.querySelector('.eraser-btn');
@@ -8,7 +9,8 @@ const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
 let currentPen = 'default';
 
-colorBtn.addEventListener('click', () => currentPen = 'color')
+colorPicker.addEventListener('input', (e) => color = e.target.value);
+colorBtn.addEventListener('click', () => currentPen = 'color');
 rainbowBtn.addEventListener('click', () => currentPen = 'rainbow');
 eraserBtn.addEventListener('click', () => currentPen = 'eraser');
 clearBtn.addEventListener('click', clearGrid);
@@ -41,7 +43,6 @@ function createGrid(size = 16){
 }
 
 // Set up a hover effect so that the grid divs change color when the mouse passes over them
-  // color-picker: color value 
   // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
 
 function getRandomColor () {
