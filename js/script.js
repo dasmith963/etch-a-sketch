@@ -1,8 +1,11 @@
 const gridContainer = document.querySelector('.grid-container');
 const clearBtn = document.querySelector('.clear-btn');
+const sizeText = document.querySelector('.size-text');
+const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
 
 clearBtn.addEventListener('click', clearGrid);
+slider.addEventListener('input', updateGridSize);
 
 function createGrid(size = 16){
   gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -32,6 +35,13 @@ function getRandomColor () {
   this.style.backgroundColor = randomColor;
 }
 
+function updateGridSize(e){
+  size = e.target.value;
+  sizeText.textContent = `${size} x ${size}`;
+  gridContainer.innerHTML = '';
+  createGrid(size);
+}
+
 function clearGrid(){
   const square = document.querySelectorAll('.grid-item');
   square.forEach((square) => 
@@ -45,5 +55,3 @@ createGrid();
   // color-picker: color value 
   // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
   
-// Add a function to change number of squares per side for the new grid. 
-  //  The existing grid should be removed and a new grid should be generated in the same total space as before 
