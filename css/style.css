@@ -127,3 +127,7 @@ button:hover{
   height: 31.25em;
   background-color: #fefefe;
 }
+
+.grid-lines{
+  border: 1px solid #ddd;
+}
