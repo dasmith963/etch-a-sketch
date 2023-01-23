@@ -21,5 +21,5 @@ I spent most of my development time learning about the different types of event 
 
 ### Links
 
-- Live preview: 
+- Live preview: https://dasmith963.github.io/etch-a-sketch/
 
