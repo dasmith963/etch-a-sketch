@@ -4,6 +4,7 @@ const colorBtn = document.querySelector('.color-btn');
 const rainbowBtn = document.querySelector('.rainbow-btn');
 const eraserBtn = document.querySelector('.eraser-btn');
 const clearBtn = document.querySelector('.clear-btn');
+const gridBtn = document.querySelector('.grid-btn');
 const sizeText = document.querySelector('.size-text');
 const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
@@ -14,19 +15,8 @@ colorBtn.addEventListener('click', getColorPen);
 rainbowBtn.addEventListener('click', getRainbowPen);
 eraserBtn.addEventListener('click', getEraserPen);
 clearBtn.addEventListener('click', clearGrid);
+gridBtn.addEventListener('click', toggleGridLines);
 slider.addEventListener('input', updateGridSize);
-
-function createGrid(size = 16) {
-  gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-  gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
-
-  for (let i = 0; i < (size * size); i++) {
-    const gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item');
-    gridItem.addEventListener('mouseover', changeSquareColor);
-    gridContainer.appendChild(gridItem);
-  }
-}
 
 function getColorPen(){
   currentPen = 'color';
@@ -41,6 +31,18 @@ function getRainbowPen(){
 function getEraserPen(){
   currentPen = 'eraser';
   changePen('eraser');
+}
+
+function createGrid(size = 16) {
+  gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+  for (let i = 0; i < (size * size); i++) {
+    const gridItem = document.createElement('div');
+    gridItem.classList.add('grid-item');
+    gridItem.addEventListener('mouseover', changeSquareColor);
+    gridContainer.appendChild(gridItem);
+  }
 }
 
 function changePen(currentPen){
@@ -89,6 +91,14 @@ function clearGrid() {
   square.forEach((square) =>
     square.style.backgroundColor = 'transparent'
   )
+}
+
+function toggleGridLines(){
+  gridBtn.classList.toggle('active');
+ const square = document.querySelectorAll('.grid-item');
+ square.forEach((square) =>
+   square.classList.toggle('grid-lines')
+ )
 }
 
 function updateGridSize(e) {
