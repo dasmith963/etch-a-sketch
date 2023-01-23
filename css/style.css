@@ -83,6 +83,11 @@ button:hover{
   border-color: #f5f3f4;
 }
 
+.active{
+  background-color: #f9fafb;
+  color: #3B3B3B;
+}
+
 .size-text{
   font-size: 1.5em;
 }
