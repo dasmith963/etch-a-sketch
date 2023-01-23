@@ -7,21 +7,12 @@ const clearBtn = document.querySelector('.clear-btn');
 const sizeText = document.querySelector('.size-text');
 const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
-let currentPen = 'default';
+let currentPen = 'color';
 
 colorPicker.addEventListener('input', (e) => color = e.target.value);
-colorBtn.addEventListener('click', () => {
-  currentPen = 'color'
-  changePen('color')
-});
-rainbowBtn.addEventListener('click', () => {
-  currentPen = 'rainbow'
-  changePen('rainbow')
-});
-eraserBtn.addEventListener('click', () => {
-  currentPen = 'eraser'
-  changePen('eraser')
-})
+colorBtn.addEventListener('click', getColorPen); 
+rainbowBtn.addEventListener('click', getRainbowPen);
+eraserBtn.addEventListener('click', getEraserPen);
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
@@ -37,18 +28,33 @@ function createGrid(size = 16) {
   }
 }
 
+function getColorPen(){
+  currentPen = 'color';
+  changePen('color');
+}
+
+function getRainbowPen(){
+  currentPen = 'rainbow';
+  changePen('rainbow');
+}
+
+function getEraserPen(){
+  currentPen = 'eraser';
+  changePen('eraser');
+}
+
 function changePen(currentPen){
+  if (currentPen === 'color') {
+    colorBtn.classList.add('active');
+    rainbowBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+  }  
   if (currentPen === 'rainbow') {
     rainbowBtn.classList.add('active')
     colorBtn.classList.remove('active')
     eraserBtn.classList.remove('active')
   } 
-  else if (currentPen === 'color') {
-    colorBtn.classList.add('active');
-    rainbowBtn.classList.remove('active');
-    eraserBtn.classList.remove('active');
-  } 
-  else if (currentPen === 'eraser') {
+  if (currentPen === 'eraser') {
     eraserBtn.classList.add('active');
     colorBtn.classList.remove('active');
     rainbowBtn.classList.remove('active');
@@ -56,18 +62,15 @@ function changePen(currentPen){
 }
 
 function changeSquareColor() {
-  if (currentPen === 'default') {
-    this.style.backgroundColor = color;
-  }
-  else if (currentPen === 'rainbow') {
-    this.style.backgroundColor = getRandomColor();
-  }
-  else if (currentPen === 'eraser') {
-    this.style.backgroundColor = '#fefefe';
-  }
-  else if (currentPen === 'color') {
+  if (currentPen === 'color') {
     const previousColor = color;
     this.style.backgroundColor = previousColor;
+  }
+  if (currentPen === 'rainbow') {
+    this.style.backgroundColor = getRandomColor();
+  }
+  if (currentPen === 'eraser') {
+    this.style.backgroundColor = '#fefefe';
   }
 }
 
