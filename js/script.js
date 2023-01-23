@@ -16,53 +16,52 @@ eraserBtn.addEventListener('click', () => currentPen = 'eraser');
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
-function createGrid(size = 16){
+function createGrid(size = 16) {
   gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-  for (let i = 0; i < (size * size); i++){
+  for (let i = 0; i < (size * size); i++) {
     const gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
-    gridItem.addEventListener('mouseover', ()=>{
-      if (currentPen === 'default'){
-        gridItem.style.backgroundColor = color;
-      }
-      else if (currentPen === 'rainbow'){
-        gridItem.style.backgroundColor = getRandomColor();
-      }
-      else if (currentPen === 'eraser'){
-        gridItem.style.backgroundColor = '#fefefe';
-      }
-      else if (currentPen === 'color'){
-        const previousColor = color;
-        gridItem.style.backgroundColor = previousColor;
-      }
-    });
+    gridItem.addEventListener('mouseover', changeSquareColor);
     gridContainer.appendChild(gridItem);
   }
 }
 
-// Set up a hover effect so that the grid divs change color when the mouse passes over them
-  // add 10% of black(or white) to color so that only after 10 passes is the square completely black (or white).
+function changeSquareColor() {
+  if (currentPen === 'default') {
+    this.style.backgroundColor = color;
+  }
+  else if (currentPen === 'rainbow') {
+    this.style.backgroundColor = getRandomColor();
+  }
+  else if (currentPen === 'eraser') {
+    this.style.backgroundColor = '#fefefe';
+  }
+  else if (currentPen === 'color') {
+    const previousColor = color;
+    this.style.backgroundColor = previousColor;
+  }
+}
 
-function getRandomColor () {
+function getRandomColor() {
   let letters = '0123456789ABCDEF'.split('');
   let randomColor = '#';
 
-  for (let i = 0; i < 6; i++){
+  for (let i = 0; i < 6; i++) {
     randomColor += letters[Math.floor(Math.random() * 16)];
   }
   return randomColor;
 }
 
-function clearGrid(){
+function clearGrid() {
   const square = document.querySelectorAll('.grid-item');
-  square.forEach((square) => 
+  square.forEach((square) =>
     square.style.backgroundColor = 'transparent'
   )
 }
 
-function updateGridSize(e){
+function updateGridSize(e) {
   size = e.target.value;
   sizeText.textContent = `${size} x ${size}`;
   gridContainer.innerHTML = '';
