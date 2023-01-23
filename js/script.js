@@ -11,24 +11,24 @@ let color = '#3B3B3B';
 let currentPen = 'color';
 
 colorPicker.addEventListener('input', (e) => color = e.target.value);
-colorBtn.addEventListener('click', getColorPen); 
+colorBtn.addEventListener('click', getColorPen);
 rainbowBtn.addEventListener('click', getRainbowPen);
 eraserBtn.addEventListener('click', getEraserPen);
 clearBtn.addEventListener('click', clearGrid);
 gridBtn.addEventListener('click', toggleGridLines);
 slider.addEventListener('input', updateGridSize);
 
-function getColorPen(){
+function getColorPen() {
   currentPen = 'color';
   changePen('color');
 }
 
-function getRainbowPen(){
+function getRainbowPen() {
   currentPen = 'rainbow';
   changePen('rainbow');
 }
 
-function getEraserPen(){
+function getEraserPen() {
   currentPen = 'eraser';
   changePen('eraser');
 }
@@ -45,17 +45,17 @@ function createGrid(size = 16) {
   }
 }
 
-function changePen(currentPen){
+function changePen(currentPen) {
   if (currentPen === 'color') {
     colorBtn.classList.add('active');
     rainbowBtn.classList.remove('active');
     eraserBtn.classList.remove('active');
-  }  
+  }
   if (currentPen === 'rainbow') {
     rainbowBtn.classList.add('active')
     colorBtn.classList.remove('active')
     eraserBtn.classList.remove('active')
-  } 
+  }
   if (currentPen === 'eraser') {
     eraserBtn.classList.add('active');
     colorBtn.classList.remove('active');
@@ -93,12 +93,18 @@ function clearGrid() {
   )
 }
 
-function toggleGridLines(){
+function toggleGridLines() {
   gridBtn.classList.toggle('active');
- const square = document.querySelectorAll('.grid-item');
- square.forEach((square) =>
-   square.classList.toggle('grid-lines')
- )
+  const square = document.querySelectorAll('.grid-item');
+  square.forEach((square) => square.classList.toggle('grid-lines'))
+}
+
+function checkGridLines() {
+  if (gridBtn.classList.contains('active')){
+    const square = document.querySelectorAll('.grid-item');
+  square.forEach((square) => square.classList.add('grid-lines'));
+  }
+
 }
 
 function updateGridSize(e) {
@@ -106,6 +112,7 @@ function updateGridSize(e) {
   sizeText.textContent = `${size} x ${size}`;
   gridContainer.innerHTML = '';
   createGrid(size);
+  checkGridLines();
 }
 
 createGrid();
