@@ -9,6 +9,7 @@ const sizeText = document.querySelector('.size-text');
 const slider = document.querySelector('.slider');
 let color = '#3B3B3B';
 let currentPen = 'color';
+let isDrawing = false;
 
 colorPicker.addEventListener('input', (e) => color = e.target.value);
 colorBtn.addEventListener('click', getColorPen);
@@ -17,6 +18,8 @@ eraserBtn.addEventListener('click', getEraserPen);
 clearBtn.addEventListener('click', clearGrid);
 gridBtn.addEventListener('click', toggleGridLines);
 slider.addEventListener('input', updateGridSize);
+document.querySelector('body').addEventListener('mousedown', ()=> isDrawing = true);
+document.querySelector('body').addEventListener('mouseup', ()=> isDrawing = false);
 
 function getColorPen() {
   currentPen = 'color';
@@ -41,6 +44,7 @@ function createGrid(size = 16) {
     const gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
     gridItem.addEventListener('mouseover', changeSquareColor);
+    gridItem.addEventListener('mousedown', changeSquareColor);
     gridContainer.appendChild(gridItem);
   }
 }
@@ -63,7 +67,11 @@ function changePen(currentPen) {
   }
 }
 
-function changeSquareColor() {
+function changeSquareColor(e) {
+  e.preventDefault();
+  
+  if (e.type === 'mouseover' && !(isDrawing)) return
+
   if (currentPen === 'color') {
     const previousColor = color;
     this.style.backgroundColor = previousColor;
@@ -100,11 +108,10 @@ function toggleGridLines() {
 }
 
 function checkGridLines() {
-  if (gridBtn.classList.contains('active')){
+  if (gridBtn.classList.contains('active')) {
     const square = document.querySelectorAll('.grid-item');
-  square.forEach((square) => square.classList.add('grid-lines'));
+    square.forEach((square) => square.classList.add('grid-lines'));
   }
-
 }
 
 function updateGridSize(e) {
