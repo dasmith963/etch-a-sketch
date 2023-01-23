@@ -10,9 +10,18 @@ let color = '#3B3B3B';
 let currentPen = 'default';
 
 colorPicker.addEventListener('input', (e) => color = e.target.value);
-colorBtn.addEventListener('click', () => currentPen = 'color');
-rainbowBtn.addEventListener('click', () => currentPen = 'rainbow');
-eraserBtn.addEventListener('click', () => currentPen = 'eraser');
+colorBtn.addEventListener('click', () => {
+  currentPen = 'color'
+  changePen('color')
+});
+rainbowBtn.addEventListener('click', () => {
+  currentPen = 'rainbow'
+  changePen('rainbow')
+});
+eraserBtn.addEventListener('click', () => {
+  currentPen = 'eraser'
+  changePen('eraser')
+})
 clearBtn.addEventListener('click', clearGrid);
 slider.addEventListener('input', updateGridSize);
 
@@ -25,6 +34,24 @@ function createGrid(size = 16) {
     gridItem.classList.add('grid-item');
     gridItem.addEventListener('mouseover', changeSquareColor);
     gridContainer.appendChild(gridItem);
+  }
+}
+
+function changePen(currentPen){
+  if (currentPen === 'rainbow') {
+    rainbowBtn.classList.add('active')
+    colorBtn.classList.remove('active')
+    eraserBtn.classList.remove('active')
+  } 
+  else if (currentPen === 'color') {
+    colorBtn.classList.add('active');
+    rainbowBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+  } 
+  else if (currentPen === 'eraser') {
+    eraserBtn.classList.add('active');
+    colorBtn.classList.remove('active');
+    rainbowBtn.classList.remove('active');
   }
 }
 
