@@ -143,3 +143,91 @@ button:hover{
     background-color: #94bbe9;
   }
 }
+
+@media (max-width: 1000px) {
+  .main{
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 950px) {
+  .main{
+    justify-content: center;
+    gap: 60px;
+  }
+}
+  
+@media (max-width: 900px) {
+  .header{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+  }
+
+  .main{
+    max-width: 100vw;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .grid-container{
+    width: 30em;
+    height: 30em;
+  }
+
+  .controls{
+    padding: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .header{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+  }
+
+  .main{
+    max-width: 100vw;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .grid-container{
+    width: 24.5em;
+    height: 24.5em;
+  }
+
+  .controls{
+    padding: 1em;
+  }
+}
+
+@media (max-width: 400px) {
+  .header{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+  }
+
+  .main{
+    max-width: 100vw;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .grid-container{
+    width: 20em;
+    height: 20em;
+  }
+
+  .controls{
+    padding: 1em;
+  }
+}
